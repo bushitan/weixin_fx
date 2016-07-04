@@ -8,8 +8,9 @@ import httplib, urllib ,urllib2
 import json
 import hashlib
 
-@csrf_exempt
+# @csrf_exempt
 def Index(request):
+    print "get Message ",request.method
     if request.method=='GET':
         response=HttpResponse(CheckSignature(request))
         return response

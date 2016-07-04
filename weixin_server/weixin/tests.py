@@ -37,7 +37,8 @@ if __name__ == '__main__':
         # print "2:",obj['url']
         # print response.getheaders() #获取头信息
 
-        url = "http://127.0.0.1:8000/art/wx_img_str"
+        # url = "http://127.0.0.1:8000/art/wx_img_str"
+        url = "http://127.0.0.1:8000/weixin"
         data  = {  "img_url":"http://mmbiz.qpic.cn/mmbiz/EmT9585IibD0V5dic327aVTjBFr1PgAcdzb7SDPK0Ndo3qqm26wHn6s4Qpf5TddjtpNFRrmL8CBb8Q64XuN13v4Q/0"}
         req = urllib2.Request(url)
         data = urllib.urlencode(data)
