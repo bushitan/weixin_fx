@@ -39,7 +39,7 @@ def CheckSignature(request):
         return None
 
 def AutoReplyService(request):
-
+    print "Message In FengXiong "
     # change to etree method
     message_str =  request.read()
     root = ElementTree.fromstring(message_str)
