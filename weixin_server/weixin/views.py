@@ -102,10 +102,10 @@ def AutoReplyService(request):
             return obj
 
 
-        url = "http://120.27.97.33/art/wx_img_str"
+        url = "http://120.27.97.33:90/grid/wx_img_str"
         data  = {  "img_url":image_url}
 
-        _img_url = "http://120.27.97.33" + ImgToStr(url,data)['url'] + ImgToStr(url,data)['filename'] + ".png"
+        _img_url = "http://120.27.97.33:90" + ImgToStr(url,data)['url'] + ImgToStr(url,data)['filename'] + ".png"
         _paw_url = "http://bushitan.pythonanywhere.com/art/show/" + ImgToStr(url,data)['filename']
 
         content = "<a href='"+_paw_url+"'>image url</a>"
