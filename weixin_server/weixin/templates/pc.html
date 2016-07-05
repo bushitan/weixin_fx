@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>手绘分析神器</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+{#    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />#}
 {#    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">#}
 {#    <link rel="stylesheet" href="/static/css/vmaig.css">#}
 {#    <link rel="stylesheet" href="/static/css/vmaig_comments.css">#}
@@ -125,7 +125,7 @@
     <div class="modal-dialog">
           <div class="modal-content">
             <a style="top:100px">
-              <img src="/static/icon/loading.gif" style="width:100%;height: auto;">
+{#              <img src="/static/icon/loading.gif" style="width:100%;height: auto;">#}
             </a>
           </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -140,34 +140,19 @@
          type: "POST",
          data: {
              "url":"1"
-{#             "tx": canvas.toDataURL().split(',')[1],#}
-{#             "img_type": $('input:radio[name="img_type"]:checked').val(),#}
-{#             "width": parseInt(_width),#}
-{#             "height": parseInt(_height),#}
-{#             "char_size": $("#char_size").val(),#}
-{#             "char_ascii": $("#ascii").val(),#}
-{#             "grid_num": $("#grid_num").val()#}
          },
          beforeSend: function (xhr) {
 {#             $("#myModal").modal('show');#}
              xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
          },
          success: function (data, textStatus) {
-{#//            alert(data.url);#}
-{#             $("#img-str").prop("src", data.url);#}
-//            $("#img-str").css("width",width+"px");
-//            $("#img-str").css("height",height+"px");
-//            $("#img-str").prop("style","width:"+width+"px;height:"+height+"px;");
 
-//            $("#img-str").prop("src",data.url);
-//            window.location.href = data.url
-//            location.reload();
          },
          error: function (XMLHttpRequest, textStatus, errorThrown) {
              alert(XMLHttpRequest.responseText);
          },
          complete: function (XMLHttpRequest, textStatus, errorThrown) {
-             $("#myModal").modal('hide');
+
 //            console.log("1:"+ $("body").scrollTop())
 //            $("body").scrollTop(10000)
 //            console.log("2:"+  $("body").scrollTop())

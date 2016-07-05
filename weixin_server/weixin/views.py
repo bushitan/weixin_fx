@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import View, TemplateView, ListView, DetailView
+from django.views.generic import  ListView
 from xml.etree import ElementTree
 from time import time
 import httplib, urllib ,urllib2
@@ -13,7 +12,7 @@ class BaseMixin(object):
     def get_context_data(self, *args, **kwargs):
         context = super(BaseMixin, self).get_context_data(**kwargs)
         return context
-# @csrf_exempt
+
 class IndexView(BaseMixin, ListView):
     template_name = 'pc.html'
 
@@ -39,7 +38,6 @@ class IndexView(BaseMixin, ListView):
         # )
         # return 'post'
 
-# @csrf_exempt
 def Index(request):
     print "get Message ",request.method
     if request.method=='GET':
