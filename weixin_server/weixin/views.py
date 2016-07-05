@@ -22,10 +22,9 @@ class IndexView(BaseMixin, ListView):
         pass
     def get(self, request, *args, **kwargs):
         print request,"get"
-        return super(IndexView, self).get(request, *args, **kwargs)
-
-        # response=HttpResponse(CheckSignature(request))
-        # return response
+        # return super(IndexView, self).get(request, *args, **kwargs)
+        response=HttpResponse(CheckSignature(request))
+        return response
 
     def post(self, request, *args, **kwargs):
         print request,"post"
@@ -72,7 +71,7 @@ def AutoReplyService(request):
     print "Message In FengXiong "
     # change to etree method
     message_str =  request.read()
-    print 1
+    print 'in service',message_str
     root = ElementTree.fromstring(message_str)
     print 11
     form_user_name = root.find('FromUserName').text
