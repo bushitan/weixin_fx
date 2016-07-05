@@ -26,6 +26,7 @@ class IndexView(BaseMixin, ListView):
         response=HttpResponse(CheckSignature(request))
         return response
 
+
     def post(self, request, *args, **kwargs):
         print request,"post"
         reply_msg = AutoReplyService(request)
@@ -44,6 +45,7 @@ def Index(request):
         return response
 
     elif request.method=='POST':
+        print request,"post"
         # service
         reply_msg = AutoReplyService(request)
         return reply_msg

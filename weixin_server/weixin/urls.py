@@ -7,7 +7,12 @@ from weixin.views import *
 #
 # )
 
-urlpatterns = [
-   url(r'^weixin/', IndexView.as_view()),
-   # url(r'weixin/main^$', IndexView.as_view()),
-]
+# urlpatterns = [
+#    url(r'^weixin/', IndexView.as_view()),
+#    # url(r'weixin/main^$', IndexView.as_view()),
+# ]
+
+urlpatterns=patterns('',
+    url(r'^weixin/$','weixin.views.Index'),
+
+)
