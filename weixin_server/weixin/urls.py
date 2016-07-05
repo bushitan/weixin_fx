@@ -2,7 +2,11 @@ from django.conf.urls import patterns, include, url
 
 from weixin.views import *
 
-urlpatterns=patterns('',
-    url(r'^$','weixin.views.Index'),
+# urlpatterns=patterns('',
+#     url(r'^$','weixin.views.Index'),
+#
+# )
 
-)
+urlpatterns = [
+   url(r'^$', IndexView.as_view()),
+]
