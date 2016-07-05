@@ -23,10 +23,10 @@ class IndexView(BaseMixin, ListView):
         pass
     def get(self, request, *args, **kwargs):
         print request,"get"
-        return super(IndexView, self).get(request, *args, **kwargs)
+        # return super(IndexView, self).get(request, *args, **kwargs)
 
-        # response=HttpResponse(CheckSignature(request))
-        # return response
+        response=HttpResponse(CheckSignature(request))
+        return response
 
     def post(self, request, *args, **kwargs):
         print request,"post"
