@@ -14,5 +14,5 @@ from weixin.views import *
 
 urlpatterns=patterns('',
     url(r'^weixin/$','weixin.views.Index'),
-
+    url(r'^test/$', IndexView.as_view()),
 )
