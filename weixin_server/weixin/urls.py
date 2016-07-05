@@ -8,5 +8,6 @@ from weixin.views import *
 # )
 
 urlpatterns = [
-   url(r'^$', IndexView.as_view()),
+   url(r'^weixin/', IndexView.as_view()),
+   # url(r'weixin/main^$', IndexView.as_view()),
 ]
