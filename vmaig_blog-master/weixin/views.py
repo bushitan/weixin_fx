@@ -2,52 +2,22 @@
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import View, TemplateView, ListView, DetailView
 from xml.etree import ElementTree
 from time import time
 import httplib, urllib ,urllib2
 import json
 import hashlib
 
-class BaseMixin(object):
-    def get_context_data(self, *args, **kwargs):
-        context = super(BaseMixin, self).get_context_data(**kwargs)
-        return context
-# @csrf_exempt
-class IndexView(BaseMixin, ListView):
-    template_name = 'pc.html'
-
-    def get_context_data(self, **kwargs):
-        return super(IndexView, self).get_context_data(**kwargs)
-    def get_queryset(self):
-        pass
-    def get(self, request, *args, **kwargs):
-        print request,"get"
-        return super(IndexView, self).get(request, *args, **kwargs)
-
-        # response=HttpResponse(CheckSignature(request))
-        # return response
-
-    def post(self, request, *args, **kwargs):
-        print request,"post"
-        reply_msg = AutoReplyService(request)
-        return reply_msg
-        # mydict = {'matrix':""}
-        # return HttpResponse(
-        #     json.dumps(mydict),
-        #     content_type="application/json"
-        # )
-        # return 'post'
-
-# @csrf_exempt
+@csrf_exempt
 def Index(request):
-    print "get Message ",request.method
     if request.method=='GET':
+        print request,'GET'
         response=HttpResponse(CheckSignature(request))
         return response
 
     elif request.method=='POST':
         # service
+        print request,'post'
         reply_msg = AutoReplyService(request)
         return reply_msg
     else:
@@ -71,12 +41,10 @@ def CheckSignature(request):
         return None
 
 def AutoReplyService(request):
-    print "Message In FengXiong "
+
     # change to etree method
     message_str =  request.read()
-    print 1
     root = ElementTree.fromstring(message_str)
-    print 11
     form_user_name = root.find('FromUserName').text
     to_user_name = root.find('ToUserName').text
     message_type = root.find('MsgType').text
@@ -136,10 +104,10 @@ def AutoReplyService(request):
             return obj
 
 
-        url = "http://120.27.97.33:90/grid/wx_img_str"
+        url = "http://120.27.97.33/art/wx_img_str"
         data  = {  "img_url":image_url}
 
-        _img_url = "http://120.27.97.33:90" + ImgToStr(url,data)['url'] + ImgToStr(url,data)['filename'] + ".png"
+        _img_url = "http://120.27.97.33" + ImgToStr(url,data)['url'] + ImgToStr(url,data)['filename'] + ".png"
         _paw_url = "http://bushitan.pythonanywhere.com/art/show/" + ImgToStr(url,data)['filename']
 
         content = "<a href='"+_paw_url+"'>image url</a>"
