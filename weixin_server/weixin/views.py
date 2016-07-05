@@ -2,6 +2,7 @@
 
 from django.http import HttpResponse
 from django.views.generic import  ListView
+from django.views.decorators.csrf import csrf_exempt
 from xml.etree import ElementTree
 from time import time
 import httplib, urllib ,urllib2
@@ -37,7 +38,7 @@ class IndexView(BaseMixin, ListView):
         #     content_type="application/json"
         # )
         # return 'post'
-
+@csrf_exempt
 def Index(request):
     print "get Message ",request.method
     if request.method=='GET':
