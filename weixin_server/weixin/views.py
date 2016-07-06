@@ -8,7 +8,7 @@ from time import time
 import httplib, urllib ,urllib2
 import json
 import hashlib
-
+import weixin_server.settings as SETTING
 class BaseMixin(object):
     def get_context_data(self, *args, **kwargs):
         context = super(BaseMixin, self).get_context_data(**kwargs)
@@ -38,6 +38,7 @@ class IndexView(BaseMixin, ListView):
         #     content_type="application/json"
         # )
         # return 'post'
+
 @csrf_exempt
 def Index(request):
     print "get Message ",request.method
@@ -136,12 +137,15 @@ def AutoReplyService(request):
             return obj
 
 
-        url = "http://120.27.97.33:90/grid/wx_img_str"
+        # url = "http://120.27.97.33:90/grid/wx_img_str"
+        url = SETTING.API_IMG_STR
         data  = {  "img_url":image_url}
-
-        _img_url = "http://120.27.97.33:90" + ImgToStr(url,data)['url'] + ImgToStr(url,data)['filename'] + ".png"
-        _paw_url = "http://bushitan.pythonanywhere.com/art/show/" + ImgToStr(url,data)['filename']
-
+        _str_url = ImgToStr(url,data)['str_url']
+        # _img_url = "http://120.27.97.33:90" + ImgToStr(url,data)['url'] + ImgToStr(url,data)['filename'] + ".png"
+        _img_url = _str_url
+        # _paw_url = "http://bushitan.pythonanywhere.com/art/show/" + ImgToStr(url,data)['str_url']
+        _paw_url = "http://bushitan.pythonanywhere.com/art/show/?url=" + _str_url
+        print _paw_url
         content = "<a href='"+_paw_url+"'>image url</a>"
         #answer content
 

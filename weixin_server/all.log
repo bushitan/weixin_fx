@@ -1,0 +1,34 @@
+[2016-07-06 08:25:29,769] [ERROR] base : Internal Server Error: /weixin/api/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django-1.8.5-py2.7.egg\django\core\handlers\base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django-1.8.5-py2.7.egg\django\views\decorators\csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\Carcer World\code\Python\git\weixin_fx\weixin_server\weixin\views.py", line 51, in Index
+    reply_msg = AutoReplyService(request)
+  File "E:\Carcer World\code\Python\git\weixin_fx\weixin_server\weixin\views.py", line 78, in AutoReplyService
+    root = ElementTree.fromstring(message_str)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1300, in XML
+    parser.feed(text)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1642, in feed
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: not well-formed (invalid token): line 1, column 3
+[2016-07-06 08:25:29,769] [ERROR] base : Internal Server Error: /weixin/api/
+Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\django-1.8.5-py2.7.egg\django\core\handlers\base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python27\lib\site-packages\django-1.8.5-py2.7.egg\django\views\decorators\csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\Carcer World\code\Python\git\weixin_fx\weixin_server\weixin\views.py", line 51, in Index
+    reply_msg = AutoReplyService(request)
+  File "E:\Carcer World\code\Python\git\weixin_fx\weixin_server\weixin\views.py", line 78, in AutoReplyService
+    root = ElementTree.fromstring(message_str)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1300, in XML
+    parser.feed(text)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1642, in feed
+    self._raiseerror(v)
+  File "C:\Python27\lib\xml\etree\ElementTree.py", line 1506, in _raiseerror
+    raise err
+ParseError: not well-formed (invalid token): line 1, column 3
