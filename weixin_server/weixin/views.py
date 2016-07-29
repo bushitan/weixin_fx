@@ -124,7 +124,7 @@ def AutoReplyService(request):
 
         # url process img to str
 
-        def ImgToStr(url,data):
+        def PostServer(url,data):
 
             req = urllib2.Request(url)
             data = urllib.urlencode(data)
@@ -140,14 +140,25 @@ def AutoReplyService(request):
         # url = "http://120.27.97.33:90/grid/wx_img_str"
         url = SETTING.API_IMG_STR
         data  = {  "img_url":image_url}
-        _str_url = ImgToStr(url,data)['str_url']
+        _str_url = PostServer(url,data)['str_url']
+        _img_url = PostServer(url,data)['img_url']
+
         # _img_url = "http://120.27.97.33:90" + ImgToStr(url,data)['url'] + ImgToStr(url,data)['filename'] + ".png"
-        _img_url = _str_url
+        # _img_url = _str_url
         # _paw_url = "http://bushitan.pythonanywhere.com/art/show/" + ImgToStr(url,data)['str_url']
         _paw_url = "http://bushitan.pythonanywhere.com/art/show/?url=" + _str_url
         print _paw_url
         content = "<a href='"+_paw_url+"'>image url</a>"
         #answer content
+
+        blog_artwork_url = SETTING.BLOG_ARTWORK
+        blog_data = {
+            "open_id":context['to_user_name'],
+            "img_url": _img_url,
+            "char_img_url": _str_url
+        }
+        PostServer(blog_artwork_url,blog_data)
+
 
         create_time = int(time())
         # c = {
@@ -162,7 +173,7 @@ def AutoReplyService(request):
             'from_user_name':context['from_user_name'],
             'create_time':create_time,
             'message_type':message_type,
-            'pic_url':_img_url,
+            'pic_url':_str_url,
             'url':_paw_url
         }
 

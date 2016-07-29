@@ -173,3 +173,7 @@ LOGGING = {
 
 IMAGE_SERVER_HOST = 'http://120.27.97.33:91/'
 API_IMG_STR = IMAGE_SERVER_HOST + "grid/api/img_str/"
+
+
+BLOG_SERVER_HOST = 'http://120.27.97.33:82/'
+BLOG_ARTWORK = BLOG_SERVER_HOST + "blog/artwork/"
