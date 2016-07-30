@@ -184,8 +184,8 @@ def AutoReplyService(request):
             'message_type':message_type,
             'pic_url':_str_url,
             'url':_paw_url,
-            'title_history':u'(点这里，再点"继续访问"，可以看已经上传的字符画)',
-            'des_history':u'历史记录',
+            'title_history':u'历史记录',
+            'des_history':u'(点这里，再点"继续访问"，可以看已经上传的字符画)',
             'gallery_url':_gallery_url
         }
 
