@@ -118,7 +118,7 @@ def AutoReplyService(request):
 
             <item>
             <Title><![CDATA[%s]]></Title>
-            <Description></Description>
+            <Description><![CDATA[%s]]></Description>
             <PicUrl></PicUrl>
             <Url><![CDATA[%s]]></Url>
             </item>
@@ -184,13 +184,14 @@ def AutoReplyService(request):
             'message_type':message_type,
             'pic_url':_str_url,
             'url':_paw_url,
+            'title_history':u'(点这里，再点"继续访问"，可以看已经上传的字符画)',
             'des_history':u'历史记录',
             'gallery_url':_gallery_url
         }
 
         # text_reply_xml = text_xml % (c['to_user_name'],c['from_user_name'],c['create_time'],c['message_type'],c['content'])
         text_reply_xml = text_img_xml % (text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type'],text_img['pic_url'],text_img['url']
-                                         ,text_img['des_history'],text_img['gallery_url'])
+                                         ,text_img['title_history'] ,text_img['des_history'],text_img['gallery_url'])
 
 
         response = HttpResponse(text_reply_xml,content_type='application/xml; charset=utf-8')
