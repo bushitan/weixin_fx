@@ -107,7 +107,7 @@ def AutoReplyService(request):
             <CreateTime>%s</CreateTime>
             <MsgType><![CDATA[%s]]></MsgType>
 
-            <ArticleCount>1</ArticleCount>
+            <ArticleCount>2</ArticleCount>
             <Articles>
             <item>
             <Title><![CDATA[str image]]></Title>
