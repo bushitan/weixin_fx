@@ -115,6 +115,14 @@ def AutoReplyService(request):
             <PicUrl><![CDATA[%s]]></PicUrl>
             <Url><![CDATA[%s]]></Url>
             </item>
+
+            <item>
+            <Title>历史记录</Title>
+            <Description></Description>
+            <PicUrl></PicUrl>
+            <Url><![CDATA[%s]]></Url>
+            </item>
+
             </Articles>
             </xml>
         '''
@@ -159,7 +167,8 @@ def AutoReplyService(request):
         }
         PostServer(blog_artwork_url,blog_data)
 
-
+        #查看历史记录，根据用户的openid
+        _gallery_url = "http://bushitan.pythonanywhere.com/art/gallery/"+context['to_user_name']
         create_time = int(time())
         # c = {
         #     'to_user_name':context['to_user_name'],
@@ -174,11 +183,13 @@ def AutoReplyService(request):
             'create_time':create_time,
             'message_type':message_type,
             'pic_url':_str_url,
-            'url':_paw_url
+            'url':_paw_url,
+            'gallery_url':_gallery_url
         }
 
         # text_reply_xml = text_xml % (c['to_user_name'],c['from_user_name'],c['create_time'],c['message_type'],c['content'])
-        text_reply_xml = text_img_xml % (text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type'],text_img['pic_url'],text_img['url'])
+        text_reply_xml = text_img_xml % (text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type'],text_img['pic_url'],text_img['url']
+                                         ,text_img['gallery_url'])
 
 
         response = HttpResponse(text_reply_xml,content_type='application/xml; charset=utf-8')
