@@ -184,7 +184,7 @@ def AutoReplyService(request):
             'message_type':message_type,
             'pic_url':_str_url,
             'url':_paw_url,
-            'title_history':u'历史记录 (点"继续访问"，字符画都保存着呢)',
+            'title_history':u'画廊 (点"继续访问"，所有的画都存着呢!)',
             # 'des_history':u'(点"继续访问"，看历史记录)',
             'gallery_url':_gallery_url
         }
