@@ -168,7 +168,9 @@ def AutoReplyService(request):
         PostServer(blog_artwork_url,blog_data)
 
         #查看历史记录，根据用户的openid
-        _gallery_url = "http://bushitan.pythonanywhere.com/art/gallery/"+context['to_user_name']
+        # _gallery_url = "http://bushitan.pythonanywhere.com/art/gallery/"+context['to_user_name']
+
+        _gallery_url = 'http://120.27.97.33:82/blog/gallery/?open_id='+context['to_user_name']
         create_time = int(time())
         # c = {
         #     'to_user_name':context['to_user_name'],
