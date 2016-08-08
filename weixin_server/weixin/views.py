@@ -175,7 +175,7 @@ def AutoReplyService(request):
         stage_data  = {'stage_data':_res}
         _res = PostResponse(game_add_url,stage_data)
         _game_id = json.loads(_res)["game_id"]
-        _game_play_url = SETTING.GAME_PLAY + _game_id +'/'
+        _game_play_url = SETTING.GAME_PLAY + str(_game_id) +'/'
 
         #添加作品，
         blog_artwork_url = SETTING.BLOG_ARTWORK
