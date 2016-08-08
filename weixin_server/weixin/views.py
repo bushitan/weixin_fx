@@ -107,12 +107,19 @@ def AutoReplyService(request):
             <CreateTime>%s</CreateTime>
             <MsgType><![CDATA[%s]]></MsgType>
 
-            <ArticleCount>2</ArticleCount>
+            <ArticleCount>3</ArticleCount>
             <Articles>
             <item>
             <Title><![CDATA[str image]]></Title>
             <Description><![CDATA[description1]]></Description>
             <PicUrl><![CDATA[%s]]></PicUrl>
+            <Url><![CDATA[%s]]></Url>
+            </item>
+
+            <item>
+            <Title><![CDATA[%s]]></Title>
+            <Description></Description>
+            <PicUrl></PicUrl>
             <Url><![CDATA[%s]]></Url>
             </item>
 
@@ -131,34 +138,45 @@ def AutoReplyService(request):
         message_type = 'news'
 
         # url process img to str
-
+        #Post 获取 json 对象
         def PostServer(url,data):
-
             req = urllib2.Request(url)
             data = urllib.urlencode(data)
-            #enable cookie
             opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())
             response = opener.open(req, data)
             res = response.read()
-            # print response.read()
             obj = json.loads(res)
             return obj
 
+        #post 获取 reponse 字符串
+        def PostResponse(url,data):
+            req = urllib2.Request(url)
+            data = urllib.urlencode(data)
+            opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())
+            response = opener.open(req, data)
+            res = response.read()
+            return res
 
-        # url = "http://120.27.97.33:90/grid/wx_img_str"
-        url = SETTING.API_IMG_STR
+        #img转字符画服务
+        # url = SETTING.API_IMG_STR
+
+        #img转字符画，附带游戏圆圈数据
+        url = SETTING.API_GAME
         data  = {  "img_url":image_url}
-        _str_url = PostServer(url,data)['str_url']
-        _img_url = PostServer(url,data)['img_url']
-
-        # _img_url = "http://120.27.97.33:90" + ImgToStr(url,data)['url'] + ImgToStr(url,data)['filename'] + ".png"
-        # _img_url = _str_url
-        # _paw_url = "http://bushitan.pythonanywhere.com/art/show/" + ImgToStr(url,data)['str_url']
+        _res = PostResponse(url,data)  #数据字符串,同为stage_data
+        _res_json = json.loads(_res)   #数据json对象
+        _str_url = _res_json['str_url'] #字符画地址
+        _img_url = _res_json['img_url']  #原图地址
+        #微信跳转链接
         _paw_url = "http://bushitan.pythonanywhere.com/art/show/?url=" + _str_url
-        print _paw_url
-        content = "<a href='"+_paw_url+"'>image url</a>"
-        #answer content
 
+        #添加游戏数据
+        game_add_url = SETTING.GAME_ADD
+        stage_data  = {'stage_data':_res}
+        _res = PostResponse(game_add_url,stage_data)
+        _game_play_url = SETTING.GAME_PLAY
+
+        #添加作品，
         blog_artwork_url = SETTING.BLOG_ARTWORK
         blog_data = {
             "open_id":context['to_user_name'],
@@ -166,19 +184,11 @@ def AutoReplyService(request):
             "char_img_url": _str_url
         }
         PostServer(blog_artwork_url,blog_data)
-
+        #跳转画廊链接
         #查看历史记录，根据用户的openid
-        # _gallery_url = "http://bushitan.pythonanywhere.com/art/gallery/"+context['to_user_name']
-
         _gallery_url = 'http://120.27.97.33:82/blog/gallery/?open_id='+context['to_user_name']
         create_time = int(time())
-        # c = {
-        #     'to_user_name':context['to_user_name'],
-        #     'from_user_name':context['from_user_name'],
-        #     'create_time':create_time,
-        #     'message_type':message_type,
-        #     'content':content
-        # }
+
         text_img = {
             'to_user_name':context['to_user_name'],
             'from_user_name':context['from_user_name'],
@@ -186,14 +196,21 @@ def AutoReplyService(request):
             'message_type':message_type,
             'pic_url':_str_url,
             'url':_paw_url,
+
             'title_history':u'画廊 (点"继续访问"，所有的画都存着呢!)',
             # 'des_history':u'(点"继续访问"，看历史记录)',
-            'gallery_url':_gallery_url
+            'gallery_url':_gallery_url,
+
+            'title_game':u'字符画的小游戏',
+            'game_play_url':_game_play_url #游戏跳转链接
         }
 
         # text_reply_xml = text_xml % (c['to_user_name'],c['from_user_name'],c['create_time'],c['message_type'],c['content'])
-        text_reply_xml = text_img_xml % (text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type'],text_img['pic_url'],text_img['url']
-                                         ,text_img['title_history'] ,text_img['gallery_url'])
+        text_reply_xml = text_img_xml % (
+            text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type'],text_img['pic_url'],text_img['url'] #显示单页字符画
+            ,text_img['title_history'] ,text_img['gallery_url'] #链接画廊
+            ,text_img['title_game'] ,text_img['game_play_url']#链接至游戏
+        )
 
 
         response = HttpResponse(text_reply_xml,content_type='application/xml; charset=utf-8')

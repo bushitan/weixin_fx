@@ -5,6 +5,14 @@ ehthumbs.db
 # Folder config file
 Desktop.ini
 
+# Python:  
+*.py[cod]  
+*.so  
+*.egg  
+*.egg-info  
+dist  
+build
+
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
