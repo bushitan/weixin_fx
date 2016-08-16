@@ -109,8 +109,9 @@ def AutoReplyService(request):
 
             <ArticleCount>3</ArticleCount>
             <Articles>
+
             <item>
-            <Title><![CDATA[str image]]></Title>
+            <Title><![CDATA[%s]]></Title>
             <Description><![CDATA[description1]]></Description>
             <PicUrl><![CDATA[%s]]></PicUrl>
             <Url><![CDATA[%s]]></Url>
@@ -186,7 +187,8 @@ def AutoReplyService(request):
             "img_url": _img_url,
             "char_img_url": _str_url
         }
-        PostServer(blog_artwork_url,blog_data)
+        PostServer(blog_artwork_url,blog_data)  #增加作品
+
         #跳转画廊链接
         #查看历史记录，根据用户的openid
         _gallery_url = 'http://120.27.97.33:82/blog/gallery/?open_id='+context['to_user_name']
@@ -197,20 +199,25 @@ def AutoReplyService(request):
             'from_user_name':context['from_user_name'],
             'create_time':create_time,
             'message_type':message_type,
+
+            #字符画
+            'title_str':u'明暗关系',
             'pic_url':_str_url,
             'url':_paw_url,
 
-            'title_history':u'画廊 (点"继续访问"，所有的画都存着呢!)',
+            #s私密画廊
+            'title_history':u'私密画廊',
             # 'des_history':u'(点"继续访问"，看历史记录)',
             'gallery_url':_gallery_url,
 
-            'title_game':u'字符画的小游戏',
+            'title_game':u'小游戏',
             'game_play_url':_game_play_url #游戏跳转链接
         }
 
         # text_reply_xml = text_xml % (c['to_user_name'],c['from_user_name'],c['create_time'],c['message_type'],c['content'])
         text_reply_xml = text_img_xml % (
-            text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type'],text_img['pic_url'],text_img['url'] #显示单页字符画
+            text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type']
+            ,text_img['title_str'],text_img['pic_url'],text_img['url'] #显示单页字符画
             ,text_img['title_history'] ,text_img['gallery_url'] #链接画廊
             ,text_img['title_game'] ,text_img['game_play_url']#链接至游戏
         )
