@@ -170,7 +170,7 @@ def AutoReplyService(request):
         _img_url = _res_json['img_url']  #原图地址
         #微信跳转链接
         # _paw_url = "http://bushitan.pythonanywhere.com/art/show/?url=" + _str_url   #pythonanywhere 的链接
-        _paw_url = "http://120.27.97.33:82/blog/artwork/show/?url="+_str_url +"&open_id=" + context['to_user_name'] #阿里云的链接 需要图片名称，用户open_id
+        _paw_url = "http://120.27.97.33:82/blog/artwork/show/?str_img="+_str_url + "&origin_img="+ _img_url +"&open_id=" + context['to_user_name'] #阿里云的链接 需要图片名称，用户open_id
 
 
         #添加游戏数据
