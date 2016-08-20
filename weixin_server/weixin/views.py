@@ -201,7 +201,7 @@ def AutoReplyService(request):
             'message_type':message_type,
 
             #字符画
-            'title_str':u'明暗关系',
+            'title_str':u'明和暗',
             'pic_url':_str_url,
             'url':_paw_url,
 
