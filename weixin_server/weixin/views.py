@@ -99,7 +99,7 @@ def AutoReplyService(request):
 
             <item>
             <Title><![CDATA[%s]]></Title>
-            <Description><![CDATA[description1]]></Description>
+            <Description><![CDATA[%s]]></Description>
             <PicUrl><![CDATA[%s]]></PicUrl>
             <Url><![CDATA[%s]]></Url>
             </item>
@@ -117,15 +117,16 @@ def AutoReplyService(request):
             'message_type':message_type,
 
             #字符画
-            'title_str':u'公众号教程（5分钟教你会画画）',
-            'pic_url':'https://mp.weixin.qq.com/misc/getheadimg?token=234171240&fakeid=3213409238&r=286499',
+            'title_str':u'公众号教程',
+            'description':u'5分钟教你会画画',
+            'pic_url':'http://7xsark.com1.z0.glb.clouddn.com/img/20160821145626.png',
             'url':'http://mp.weixin.qq.com/s?__biz=MzIxMzQwOTIzOA==&mid=2247483735&idx=1&sn=8eecc7f01d600f4c5d587fe8a3df6412&scene=4#wechat_redirect',
 
 
         }
         text_reply_xml = text_img_xml % (
             text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type']
-            ,text_img['title_str'],text_img['pic_url'],text_img['url'] #显示单页字符画
+            ,text_img['title_str'],text_img['description'],text_img['pic_url'],text_img['url'] #显示单页字符画
 
         )
 
