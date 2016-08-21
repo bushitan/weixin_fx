@@ -84,6 +84,55 @@ def AutoReplyService(request):
 
     context = {'to_user_name':form_user_name,'from_user_name':to_user_name}
 
+    if message_type == 'event':
+
+        print message_type
+        text_img_xml = '''
+            <xml>
+            <ToUserName><![CDATA[%s]]></ToUserName>
+            <FromUserName><![CDATA[%s]]></FromUserName>
+            <CreateTime>%s</CreateTime>
+            <MsgType><![CDATA[%s]]></MsgType>
+
+            <ArticleCount>1</ArticleCount>
+            <Articles>
+
+            <item>
+            <Title><![CDATA[%s]]></Title>
+            <Description><![CDATA[description1]]></Description>
+            <PicUrl><![CDATA[%s]]></PicUrl>
+            <Url><![CDATA[%s]]></Url>
+            </item>
+
+            </Articles>
+            </xml>
+        '''
+
+        message_type = 'news'
+        create_time = int(time())
+        text_img = {
+            'to_user_name':context['to_user_name'],
+            'from_user_name':context['from_user_name'],
+            'create_time':create_time,
+            'message_type':message_type,
+
+            #字符画
+            'title_str':u'公众号教程（5分钟教你会画画）',
+            'pic_url':'https://mp.weixin.qq.com/misc/getheadimg?token=234171240&fakeid=3213409238&r=286499',
+            'url':'http://mp.weixin.qq.com/s?__biz=MzIxMzQwOTIzOA==&mid=2247483735&idx=1&sn=8eecc7f01d600f4c5d587fe8a3df6412&scene=4#wechat_redirect',
+
+
+        }
+        text_reply_xml = text_img_xml % (
+            text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type']
+            ,text_img['title_str'],text_img['pic_url'],text_img['url'] #显示单页字符画
+
+        )
+
+
+        response = HttpResponse(text_reply_xml,content_type='application/xml; charset=utf-8')
+
+        return response
 
 
 
