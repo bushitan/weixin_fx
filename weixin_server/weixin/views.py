@@ -208,11 +208,10 @@ def AutoReplyService(request):
             res = response.read()
             return res
 
-        #img转字符画服务
-        # url = SETTING.API_IMG_STR
-
         #img转字符画，附带游戏圆圈数据
-        url = SETTING.API_GAME
+        # url = SETTING.API_GAME
+        #img转字符画服务
+        url = SETTING.API_IMG_STR
         data  = {  "img_url":image_url}
         _res = PostResponse(url,data)  #数据字符串,同为stage_data
         _res_json = json.loads(_res)   #数据json对象
