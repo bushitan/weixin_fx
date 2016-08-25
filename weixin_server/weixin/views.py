@@ -218,7 +218,7 @@ def AutoReplyService(request):
         _res_json = json.loads(_res)   #数据json对象
         _str_url = _res_json['str_url'] #字符画地址
         _img_url = _res_json['img_url']  #原图地址
-        _sketch_url = _res_json['sketch']  #原图地址
+        _sketch_url = _res_json['sketch_url']  #原图地址
         #微信跳转链接
         # _paw_url = "http://bushitan.pythonanywhere.com/art/show/?url=" + _str_url   #pythonanywhere 的链接
         _paw_url = "http://120.27.97.33:82/blog/artwork/show/?str_img="+_str_url + "&origin_img="+ _img_url + "&sketch_img" + _sketch_url +"&open_id=" + context['to_user_name'] #阿里云的链接 需要图片名称，用户open_id
