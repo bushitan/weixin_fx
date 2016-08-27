@@ -117,10 +117,10 @@ def AutoReplyService(request):
             'message_type':message_type,
 
             #字符画
-            'title_str':u'公众号教程',
-            'description':u'5分钟教你会画画',
+            'title_str':u'听说你想学画画，不懂从哪里开始?',
+            'description':u'召唤·丰兄',
             'pic_url':'http://7xsark.com1.z0.glb.clouddn.com/img/20160821145626.png',
-            'url':'http://mp.weixin.qq.com/s?__biz=MzIxMzQwOTIzOA==&mid=2247483735&idx=1&sn=8eecc7f01d600f4c5d587fe8a3df6412&scene=4#wechat_redirect',
+            'url':'http://mp.weixin.qq.com/s?__biz=MzIxMzQwOTIzOA==&mid=2247483759&idx=1&sn=0cfa42b744697ffa37b611ca91f4339c#rd',
 
 
         }
