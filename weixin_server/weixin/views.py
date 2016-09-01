@@ -157,13 +157,20 @@ def AutoReplyService(request):
             <CreateTime>%s</CreateTime>
             <MsgType><![CDATA[%s]]></MsgType>
 
-            <ArticleCount>3</ArticleCount>
+            <ArticleCount>4</ArticleCount>
             <Articles>
 
             <item>
             <Title><![CDATA[%s]]></Title>
             <Description><![CDATA[description1]]></Description>
             <PicUrl><![CDATA[%s]]></PicUrl>
+            <Url><![CDATA[%s]]></Url>
+            </item>
+
+            <item>
+            <Title><![CDATA[%s]]></Title>
+            <Description></Description>
+            <PicUrl></PicUrl>
             <Url><![CDATA[%s]]></Url>
             </item>
 
@@ -244,6 +251,10 @@ def AutoReplyService(request):
         #跳转画廊链接
         #查看历史记录，根据用户的openid
         _gallery_url = 'http://120.27.97.33:82/blog/gallery/?open_id='+context['to_user_name']
+
+        #专家模式的链接地址
+        _artwork_hard = SETTING.BLOG_ARTWORK_HARD + "?bg_img_url=" + _img_url
+
         create_time = int(time())
 
         text_img = {
@@ -262,8 +273,13 @@ def AutoReplyService(request):
             # 'des_history':u'(点"继续访问"，看历史记录)',
             'gallery_url':_gallery_url,
 
+            #小游戏
             'title_game':u'小游戏',
-            'game_play_url':_game_play_url #游戏跳转链接
+            'game_play_url':_game_play_url, #游戏跳转链接
+
+            #专家模式，局部分析
+            'artwork_hard_title':u'局部分析模式',
+            "artwork_hard_url" :  _artwork_hard
         }
 
         # text_reply_xml = text_xml % (c['to_user_name'],c['from_user_name'],c['create_time'],c['message_type'],c['content'])
@@ -272,6 +288,7 @@ def AutoReplyService(request):
             ,text_img['title_str'],text_img['pic_url'],text_img['url'] #显示单页字符画
             ,text_img['title_history'] ,text_img['gallery_url'] #链接画廊
             ,text_img['title_game'] ,text_img['game_play_url']#链接至游戏
+            ,text_img['artwork_hard_title'] ,text_img['artwork_hard_url']#链接至专家模式
         )
 
 

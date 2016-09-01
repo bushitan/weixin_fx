@@ -177,6 +177,8 @@ API_GAME = IMAGE_SERVER_HOST + "grid/api/game/"  #img转字符画，附带游戏
 
 BLOG_SERVER_HOST = 'http://120.27.97.33:82/'  #blog服务
 BLOG_ARTWORK = BLOG_SERVER_HOST + "blog/artwork/"   #添加作品
+BLOG_ARTWORK_HARD = BLOG_SERVER_HOST + "blog/artwork/hard/"   #专家模式，局部分析
+
 
 GAME_PLAY = BLOG_SERVER_HOST + "blog/game/" #玩游戏
 GAME_ADD = BLOG_SERVER_HOST + "blog/game/add/" #添加游戏信息
