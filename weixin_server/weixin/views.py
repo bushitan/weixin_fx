@@ -250,7 +250,7 @@ def AutoReplyService(request):
         _res_json = json.loads(_res)
         #添加artwork show 的跳转
         _gallery_id = _res_json['gallery_id']
-        _paw_url = "http://120.27.97.33:82/blog/artwork/show/?gallery_id=" + _gallery_id
+        _paw_url = "http://120.27.97.33:82/blog/artwork/show/?gallery_id=" + str(_gallery_id)
         print 'paw_url:',_paw_url
 
         #跳转画廊链接
