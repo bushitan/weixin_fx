@@ -227,7 +227,7 @@ def AutoReplyService(request):
         _sketch_url = _res_json['sketch_url']  #原图地址
         #微信跳转链接
         # _paw_url = "http://bushitan.pythonanywhere.com/art/show/?url=" + _str_url   #pythonanywhere 的链接
-        _paw_url = "http://120.27.97.33:82/blog/artwork/show/?str_img="+_str_url + "&origin_img="+ _img_url + "&sketch_img=" + _sketch_url +"&open_id=" + context['to_user_name'] #阿里云的链接 需要图片名称，用户open_id
+        # _paw_url = "http://120.27.97.33:82/blog/artwork/show/?str_img="+_str_url + "&origin_img="+ _img_url + "&sketch_img=" + _sketch_url +"&open_id=" + context['to_user_name'] #阿里云的链接 需要图片名称，用户open_id
 
 
         #添加游戏数据
@@ -246,7 +246,12 @@ def AutoReplyService(request):
             "sketch_url": _sketch_url
 
         }
-        PostServer(blog_artwork_url,blog_data)  #增加作品
+        _res = PostResponse(blog_artwork_url,blog_data)  #增加作品
+        _res_json = json.loads(_res)
+        #添加artwork show 的跳转
+        _gallery_id = _res_json['gallery_id']
+        _paw_url = "http://120.27.97.33:82/blog/artwork/show/?gallery_id=" + _gallery_id
+        print 'paw_url:',_paw_url
 
         #跳转画廊链接
         #查看历史记录，根据用户的openid
