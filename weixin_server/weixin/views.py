@@ -250,12 +250,12 @@ def AutoReplyService(request):
         _res_json = json.loads(_res)
         #添加artwork show 的跳转
         _gallery_id = _res_json['gallery_id']
-        _paw_url = "http://120.27.97.33:82/blog/artwork/show/?gallery_id=" + str(_gallery_id)
+        _paw_url =  SETTING.BLOG_ARTWORK_SHOW + "?gallery_id=" + str(_gallery_id)
         print 'paw_url:',_paw_url
 
         #跳转画廊链接
         #查看历史记录，根据用户的openid
-        _gallery_url = 'http://120.27.97.33:82/blog/gallery/?open_id='+context['to_user_name']
+        _gallery_url = SETTING.BLOG_ARTWORK_GALLERY + '?open_id='+context['to_user_name']
 
         #专家模式的链接地址
         _artwork_hard = SETTING.BLOG_ARTWORK_HARD + "?bg_img_url=" + _img_url
