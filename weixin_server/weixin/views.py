@@ -157,7 +157,7 @@ def AutoReplyService(request):
             <CreateTime>%s</CreateTime>
             <MsgType><![CDATA[%s]]></MsgType>
 
-            <ArticleCount>4</ArticleCount>
+            <ArticleCount>2</ArticleCount>
             <Articles>
 
             <item>
@@ -174,24 +174,24 @@ def AutoReplyService(request):
             <Url><![CDATA[%s]]></Url>
             </item>
 
-            <item>
-            <Title><![CDATA[%s]]></Title>
-            <Description></Description>
-            <PicUrl></PicUrl>
-            <Url><![CDATA[%s]]></Url>
-            </item>
 
-            <item>
-            <Title><![CDATA[%s]]></Title>
-            <Description></Description>
-            <PicUrl></PicUrl>
-            <Url><![CDATA[%s]]></Url>
-            </item>
 
             </Articles>
             </xml>
         '''
-
+          # <item>
+          #   <Title><![CDATA[%s]]></Title>
+          #   <Description></Description>
+          #   <PicUrl></PicUrl>
+          #   <Url><![CDATA[%s]]></Url>
+          #   </item>
+          #
+          #   <item>
+          #   <Title><![CDATA[%s]]></Title>
+          #   <Description></Description>
+          #   <PicUrl></PicUrl>
+          #   <Url><![CDATA[%s]]></Url>
+          #   </item>
 
         message_type = 'news'
 
@@ -274,7 +274,7 @@ def AutoReplyService(request):
             'url':_paw_url,
 
             #s私密画廊
-            'title_history':u'私密画廊',
+            'title_history':u'过程画廊',
             # 'des_history':u'(点"继续访问"，看历史记录)',
             'gallery_url':_gallery_url,
 
@@ -292,8 +292,8 @@ def AutoReplyService(request):
             text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type']
             ,text_img['title_str'],text_img['pic_url'],text_img['url'] #显示单页字符画
             ,text_img['title_history'] ,text_img['gallery_url'] #链接画廊
-            ,text_img['title_game'] ,text_img['game_play_url']#链接至游戏
-            ,text_img['artwork_hard_title'] ,text_img['artwork_hard_url']#链接至专家模式
+            # ,text_img['title_game'] ,text_img['game_play_url']#链接至游戏
+            # ,text_img['artwork_hard_title'] ,text_img['artwork_hard_url']#链接至专家模式
         )
 
 
