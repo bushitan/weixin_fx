@@ -175,8 +175,10 @@ IMAGE_SERVER_HOST = 'http://120.27.97.33:91/' #图片处理服务
 API_IMG_STR = IMAGE_SERVER_HOST + "grid/api/img_str/" #img转字符画
 API_GAME = IMAGE_SERVER_HOST + "grid/api/game/"  #img转字符画，附带游戏圆圈数据
 
-BLOG_SERVER_HOST = 'http://120.27.97.33:82/'  #blog服务 阿里云 服务器
+#BLOG_SERVER_HOST = 'http://120.27.97.33:82/'  #blog服务 阿里云 服务器
 # BLOG_SERVER_HOST = 'http://bushitan1.pythonanywhere.com/'  #blog服务  PythonAnyWhere服务器
+BLOG_SERVER_HOST = 'http://blog.12xiong.top:82/'  #blog 域名
+
 
 BLOG_ARTWORK = BLOG_SERVER_HOST + "blog/artwork/"   #添加作品
 BLOG_ARTWORK_SHOW = BLOG_SERVER_HOST + "blog/artwork/show/"
