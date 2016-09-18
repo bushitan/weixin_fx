@@ -9,6 +9,8 @@ import httplib, urllib ,urllib2
 import json
 import hashlib
 import weixin_server.settings as SETTING
+from weixin.models import *
+
 class BaseMixin(object):
     def get_context_data(self, *args, **kwargs):
         context = super(BaseMixin, self).get_context_data(**kwargs)
@@ -71,6 +73,16 @@ def CheckSignature(request):
     else:
         return None
 
+#检测MsgId是否重排
+def CheckMsgID(MsgId):
+    _msgid = MsgId
+    if Message.objects.filter(msg_id = _msgid).exists():
+        return False
+    else:
+        _message = Message(msg_id = _msgid)
+        _message.save()
+    return True
+
 def AutoReplyService(request):
     print "Message In FengXiong "
     # change to etree method
@@ -80,7 +92,13 @@ def AutoReplyService(request):
     print 11
     form_user_name = root.find('FromUserName').text
     to_user_name = root.find('ToUserName').text
+    # message_type = root.find('MsgType').text
     message_type = root.find('MsgType').text
+    MsgId = root.find('MsgId').text
+
+    if CheckMsgID(MsgId) is False:
+        return ''
+
 
     context = {'to_user_name':form_user_name,'from_user_name':to_user_name}
 
