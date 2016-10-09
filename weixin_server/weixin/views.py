@@ -118,8 +118,10 @@ def AutoReplyService(request):
         '''
         message_type = 'text'
         create_time = int(time())
-
-        _content = "'" + text_content[:3] + "...'" + u"的信息已接收，丰兄正在努力整理"
+        if len(text_content) < 4:
+            _content = "'" + text_content[:3] + "...'" + u"的信息接收啦~~还想要长一点的^_^"
+        else:
+            _content = "'" + text_content[:3] + "...'" + u"的idear已接收，丰兄正在努力整理"
         text_img = {
             'to_user_name':context['to_user_name'],
             'from_user_name':context['from_user_name'],
