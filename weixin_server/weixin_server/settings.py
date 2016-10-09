@@ -104,6 +104,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 # log配置
 LOG_FILE = "./all.log"

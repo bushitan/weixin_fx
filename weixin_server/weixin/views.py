@@ -102,6 +102,41 @@ def AutoReplyService(request):
 
     context = {'to_user_name':form_user_name,'from_user_name':to_user_name}
 
+
+    if message_type == 'text':
+        text_content = root.find('Content').text
+        print message_type
+        text_img_xml = '''
+            <xml>
+            <ToUserName><![CDATA[%s]]></ToUserName>
+            <FromUserName><![CDATA[%s]]></FromUserName>
+            <CreateTime>%s</CreateTime>
+            <MsgType><![CDATA[%s]]></MsgType>
+
+            <Content><![CDATA[%s]]></Content>
+            </xml>
+        '''
+        message_type = 'text'
+        create_time = int(time())
+
+        _content = "'" + text_content[:3] + "...'" + u"的信息已接收，丰兄正在努力整理"
+        text_img = {
+            'to_user_name':context['to_user_name'],
+            'from_user_name':context['from_user_name'],
+            'create_time':create_time,
+            'message_type':message_type,
+
+            #字符画
+            "content": _content
+        }
+        text_reply_xml = text_img_xml % (
+            text_img['to_user_name'],text_img['from_user_name'],text_img['create_time'],text_img['message_type']
+            ,text_img['content'] #返回文字
+
+        )
+        response = HttpResponse(text_reply_xml,content_type='application/xml; charset=utf-8')
+        return response
+
     if message_type == 'event':
 
         print message_type
